@@ -3,7 +3,7 @@ set -e
 
 # 1. 빌드 실행
 echo "🔨 Building site..."
-bundle exec jekyll build
+JEKYLL_ENV=production bundle exec jekyll build
 
 # 2. _site 폴더가 git 저장소가 아니라면 초기 설정 (처음 한 번만 실행됨)
 if [ ! -d "_site/.git" ]; then
