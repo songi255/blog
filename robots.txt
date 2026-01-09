@@ -1,1 +1,1 @@
-Sitemap: https://songi255.github.io/blog/sitemap.xml
+Sitemap: https://blog.daveshin.me/sitemap.xml
