@@ -23,16 +23,16 @@ title_separator          : "-"
 subtitle                 : "Filling empty space" # site tagline that appears below site title in masthead
 name                     : "Dave Shin"
 description              : "Personal blog for troubleshooting and sharing knowledge"
-url                      : "https://songi255.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : "/blog" # the subpath of your site, e.g. "/blog"
+url                      : "https://blog.daveshin.me" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "songi255/blog" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
-breadcrumbs              : true # true, false (default)
+breadcrumbs              : false # true, false (default)
 words_per_minute         : 200
 enable_copy_code_button  : true # true, false (default)
-copyright                : # "copyright" name, defaults to site.title
+copyright                : "Dave Shin" # "copyright" name, defaults to site.title
 copyright_url            : # "copyright" URL, defaults to site.url
 comments:
   provider               : "giscus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
