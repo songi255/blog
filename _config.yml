@@ -20,22 +20,22 @@ locale                   : "en-US"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "Dave's Blog"
 title_separator          : "-"
-subtitle                 : "this is subtitle" # site tagline that appears below site title in masthead
+subtitle                 : "Filling empty space" # site tagline that appears below site title in masthead
 name                     : "Dave Shin"
-description              : "This is Site Description"
+description              : "Personal blog for troubleshooting and sharing knowledge"
 url                      : "https://songi255.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "/blog" # the subpath of your site, e.g. "/blog"
 repository               : "songi255/blog" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
-breadcrumbs              : # true, false (default)
+breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
-enable_copy_code_button  : # true, false (default)
+enable_copy_code_button  : true # true, false (default)
 copyright                : # "copyright" name, defaults to site.title
 copyright_url            : # "copyright" URL, defaults to site.url
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
+  provider               : "giscus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -49,17 +49,17 @@ comments:
     theme                : # "github-light" (default), "github-dark"
     issue_term           : # "pathname" (default)
   giscus:
-    repo_id              : # Shown during giscus setup at https://giscus.app
-    category_name        : # Full text name of the category
-    category_id          : # Shown during giscus setup at https://giscus.app
-    discussion_term      : # "pathname" (default), "url", "title", "og:title"
-    reactions_enabled    : # '1' for enabled (default), '0' for disabled
-    theme                : # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme"
-    strict               : # 1 for enabled, 0 for disabled (default)
-    input_position       : # "top", "bottom" # The comment input box will be placed above or below the comments
-    emit_metadata        : # 1 for enabled, 0 for disabled (default) # https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md#imetadatamessage
-    lang                 : # "en" (default)
-    lazy                 : # true, false # Loading of the comments will be deferred until the user scrolls near the comments container.
+    repo_id              : "R_kgDOQ2gfdQ" # Shown during giscus setup at https://giscus.app
+    category_name        : "Announcements" # Full text name of the category
+    category_id          : "DIC_kwDOQ2gfdc4C0wBZ" # Shown during giscus setup at https://giscus.app
+    discussion_term      : "pathname" # "pathname" (default), "url", "title", "og:title"
+    reactions_enabled    : "1" # '1' for enabled (default), '0' for disabled
+    theme                : "preferred_color_scheme" # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme"
+    strict               : "0" # 1 for enabled, 0 for disabled (default)
+    input_position       : "top" # "top", "bottom" # The comment input box will be placed above or below the comments
+    emit_metadata        : "0" # 1 for enabled, 0 for disabled (default) # https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md#imetadatamessage
+    lang                 : "en" # "en" (default)
+    lazy                 : "false" # true, false # Loading of the comments will be deferred until the user scrolls near the comments container.
   staticman:
     branch               : # "master"
     endpoint             : # "https://{your Staticman v3 API}/v3/entry/github/"
@@ -195,6 +195,7 @@ exclude:
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  - /scripts
 keep_files:
   - .git
   - .svn
@@ -323,6 +324,35 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true
       share: true
       related: true
+
+# ========================================
+# 💎 Jekyll Compose 설정 (Minimal Mistakes)
+# ========================================
+jekyll_compose:
+  auto_open: true
+
+  default_front_matter:
+    drafts:
+      layout: single
+      description:
+      image:
+      categories: []
+      tags: []
+      toc: true             # 목차 표시 여부
+      toc_sticky: true      # 목차를 스크롤 시 따라오게 할지 (오른쪽 사이드바)
+      toc_label: "TOC"      # 목차 제목 커스텀
+      author_profile: true  # 왼쪽에 작성자 프로필 표시 (false면 내용이 넓어짐)
+      read_time: true       # "1 min read" 표시
+      comments: true        # 댓글(Disqus/Utterances) 허용
+      share: true           # SNS 공유 버튼 표시
+      related: true         # 하단에 '관련 글' 표시
+    pages:
+      layout: single
+      permalink: /:title/   # URL 구조 (예: /about/)
+      classes: wide         # 'wide'를 넣으면 사이드바 없이 내용을 꽉 채웁니다. (About 페이지 등에 적합)
+      author_profile: false # 페이지에는 보통 프로필을 숨김
+      toc: false            # 페이지에는 보통 목차를 잘 안 씀
+      comments: false       # 페이지에는 댓글 비허용
