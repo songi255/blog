@@ -20,7 +20,7 @@ locale                   : "en-US"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "Dave's Blog"
 title_separator          : "-"
-subtitle                 : "Filling empty space" # site tagline that appears below site title in masthead
+subtitle                 : # "Filling empty space" # site tagline that appears below site title in masthead
 name                     : "Dave Shin"
 description              : "Personal blog for troubleshooting and sharing knowledge"
 url                      : "https://blog.daveshin.me" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
@@ -83,7 +83,7 @@ google:
   search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
 # SEO Related
-google_site_verification :
+google_site_verification : "OwzxJBm_GvulMwzzzfgoetPCjADyB0esU3e-FL7C2hk"
 bing_site_verification   :
 naver_site_verification  :
 yandex_site_verification :
@@ -114,15 +114,15 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "Dave Shin"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
-  email            :
+  bio              : # "I am an **amazing** person."
+  location         : # "Daegu, South Korea"
+  email            : # "dev@daveshin.me"
   links:
-    - label: "Email"
+    - label: "dev@daveshin.me"
       icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
+      url: "mailto:dev@daveshin.me"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
@@ -160,7 +160,7 @@ footer:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url:
-  since: "2013"
+  since: "2026"
 
 
 # Reading Files
@@ -192,9 +192,11 @@ exclude:
   - package-lock.json
   - Rakefile
   - README
+  - TODO
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  - env.sh
   - /scripts
 keep_files:
   - .git

@@ -21,4 +21,3 @@ Then you can use the `run <command>` to run the commands. (use `tab` to autocomp
 - [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes)
   - [Docs](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/)
   - [Demo](https://mmistakes.github.io/minimal-mistakes/collection-archive/)
--
