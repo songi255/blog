@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ==========================================
-# ⚙️ 설정 구간
+# ⚙️ Configuration Section
 # ==========================================
 SCRIPT_FOLDER="./scripts"
 EXCLUDE_LIST=("utils" "config" "common" "lib")
@@ -10,18 +10,18 @@ EXCLUDE_LIST=("utils" "config" "common" "lib")
 CURRENT_DIR=$(pwd)
 TARGET_DIR="$CURRENT_DIR/${SCRIPT_FOLDER}"
 
-# 도움말 메시지를 저장할 변수
+# Variable to store help message
 HELP_MSG=""
-# 자동 완성을 위한 명령어 목록 배열 (Autocomplete용)
+# Command list array for autocomplete
 CMD_LIST=()
 
 if [ ! -d "$TARGET_DIR" ]; then
-    echo "⚠️  경고: '$SCRIPT_FOLDER' 폴더가 없습니다."
+    echo "⚠️  Warning: '$SCRIPT_FOLDER' folder does not exist."
     return
 fi
 
 # ------------------------------------------
-# 1. 스크립트 스캔 (도움말 및 목록 생성용)
+# 1. Scan scripts (for help message and list generation)
 # ------------------------------------------
 for file in "$TARGET_DIR"/*; do
     [ -e "$file" ] || continue
@@ -29,7 +29,7 @@ for file in "$TARGET_DIR"/*; do
     filename=$(basename "$file")
     cmd_name="${filename%.*}"
 
-    # 제외 목록 확인
+    # Check exclusion list
     skip=false
     for exclude in "${EXCLUDE_LIST[@]}"; do
         if [ "$cmd_name" == "$exclude" ]; then
@@ -38,54 +38,54 @@ for file in "$TARGET_DIR"/*; do
     done
     if [ "$skip" == true ]; then continue; fi
 
-    # 이제 alias를 등록하지 않고, 목록에만 추가합니다.
+    # Add to list only, do not register alias
     CMD_LIST+=("$cmd_name")
-    HELP_MSG+="\n  🔹 run $cmd_name \t : $filename 실행"
+    HELP_MSG+="\n  🔹 run $cmd_name \t : Run $filename"
 done
 
 # ------------------------------------------
-# 2. 메인 'run' 함수 정의
+# 2. Main 'run' function definition
 # ------------------------------------------
 function run() {
     local cmd=$1
     local script_path="$TARGET_DIR/$cmd.sh"
 
-    # 1) 입력이 없거나 'help'인 경우 도움말 출력
+    # 1) Print help if input is empty or 'help'
     if [[ -z "$cmd" || "$cmd" == "help" ]]; then
         echo "---------------------------------------"
-        echo "🛠️  [Project] 실행 가능한 명령어 ('run <명령어>')"
+        echo "🛠️  [Project] Available commands ('run <command>')"
         echo "---------------------------------------"
         echo -e "$HELP_MSG"
         echo ""
         return
     fi
 
-    # 2) 제외 목록에 있는지 재확인 (보안/실수 방지)
+    # 2) Recheck exclusion list (security/error prevention)
     for exclude in "${EXCLUDE_LIST[@]}"; do
         if [ "$cmd" == "$exclude" ]; then
-            echo "🚫 '$cmd'는 직접 실행할 수 없는 스크립트입니다."
+            echo "🚫 '$cmd' cannot be executed directly."
             return 1
         fi
     done
 
-    # 3) 실제 스크립트 파일 존재 여부 확인 및 실행
+    # 3) Check if script file exists and execute
     if [ -f "$script_path" ]; then
-        # $cmd를 제외한 나머지 인자("${@:2}")를 그대로 전달
+        # Pass remaining arguments ("${@:2}") excluding $cmd
         sh "$script_path" "${@:2}"
     else
-        echo "❌ 알 수 없는 명령어입니다: $cmd"
-        echo "ℹ️  'run help'를 입력하여 목록을 확인하세요."
+        echo "❌ Unknown command: $cmd"
+        echo "ℹ️  Enter 'run help' to see the list."
     fi
 }
 
 # ------------------------------------------
-# 3. 자동 완성 (Tab 키) 기능 추가 (꿀팁!)
+# 3. Add autocomplete (Tab key) functionality
 # ------------------------------------------
-# 사용자가 'run b' 치고 탭 누르면 'run build'가 되게 함
+# Enable autocomplete so typing 'run b' and pressing Tab becomes 'run build'
 if command -v complete &> /dev/null; then
     complete -W "${CMD_LIST[*]}" run
 fi
 
-echo "🚀 환경 설정 로드 완료! 이제 'run <명령어>' 형태로 사용하세요."
-# 로드 시 도움말 보여주기 (원하면 주석 해제)
+echo "🚀 Environment setup loaded! Use 'run <command>' to execute commands."
+# Uncomment to show help message on load
 # run help

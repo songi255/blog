@@ -1,36 +1,37 @@
 #!/bin/bash
 
 # ==========================================
-# 📄 새 페이지(Page) 생성 스크립트
+# 📄 New Page Creation Script
 # ==========================================
 
 GREEN='\033[32m'
 CYAN='\033[36m'
 YELLOW='\033[33m'
+RED='\033[31m'
 RESET='\033[0m'
 
-echo -e "${CYAN}📄 [Page] 새 페이지를 생성합니다.${RESET}"
-echo "생성할 페이지의 제목(Title)을 입력하세요."
-echo -e "${YELLOW}(예: About, Contact, My Project)${RESET}"
+echo -e "${CYAN}📄 [Page] Creating a new page.${RESET}"
+echo "Enter the title of the page to create."
+echo -e "${YELLOW}(e.g., About, Contact, My Project)${RESET}"
 
-# 1. 제목 입력
+# 1. Get title input
 echo -n "Title > "
 read TITLE
 
 if [ -z "$TITLE" ]; then
-    echo "취소되었습니다."
+    echo "Cancelled."
     exit 0
 fi
 
-# 2. Jekyll Compose Page 실행
+# 2. Execute Jekyll Compose Page
 echo -e "---------------------------------------"
-echo -e "🚀 '$TITLE' 페이지 생성 중..."
+echo -e "🚀 Creating page '$TITLE'..."
 
-# bundle exec jekyll page "제목"
+# bundle exec jekyll page "Title"
 if bundle exec jekyll page "$TITLE"; then
-    echo -e "${GREEN}✅ 생성 완료!${RESET}"
-    echo -e "   루트 디렉토리(또는 설정된 경로)를 확인하세요."
+    echo -e "${GREEN}✅ Creation complete!${RESET}"
+    echo -e "   Check the root directory (or configured path)."
 else
-    echo -e "${RED}❌ 실패했습니다.${RESET}"
+    echo -e "${RED}❌ Failed.${RESET}"
     exit 1
 fi
